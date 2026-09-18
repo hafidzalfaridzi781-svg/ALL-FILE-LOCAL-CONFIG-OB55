@@ -1,0 +1,1575 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+<meta name="theme-color" content="#000000" />
+<title>ZyeCitedz — Official Information Center</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+/* ========== RESET & BASE ========== */
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html,body{height:100%}
+body{
+  font-family:'Inter',-apple-system,BlinkMacSystemFont,system-ui,sans-serif;
+  background:#000;
+  color:#fff;
+  min-height:100vh;
+  overflow-x:hidden;
+  -webkit-font-smoothing:antialiased;
+  -moz-osx-font-smoothing:grayscale;
+  padding-bottom:80px;
+  line-height:1.5;
+}
+::-webkit-scrollbar{width:5px;height:5px}
+::-webkit-scrollbar-track{background:#000}
+::-webkit-scrollbar-thumb{background:#333;border-radius:10px}
+::-webkit-scrollbar-thumb:hover{background:#555}
+
+a{color:inherit;text-decoration:none}
+button{font-family:inherit;cursor:pointer;border:none;background:none;color:inherit}
+input,textarea,select{font-family:inherit;color:#fff}
+
+/* ========== APP CONTAINER ========== */
+.app{
+  max-width:640px;
+  margin:0 auto;
+  padding:20px 16px 30px;
+  position:relative;
+  min-height:100vh;
+}
+
+/* ========== TOP BAR ========== */
+.topbar{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  padding:8px 4px 22px;
+  border-bottom:1px solid rgba(255,255,255,0.08);
+  margin-bottom:24px;
+}
+.brand{
+  display:flex;
+  align-items:center;
+  gap:10px;
+  font-weight:800;
+  font-size:18px;
+  letter-spacing:-0.4px;
+}
+.brand-dot{
+  width:10px;height:10px;border-radius:50%;
+  background:#fff;
+  box-shadow:0 0 12px rgba(255,255,255,0.9);
+  animation:pulse 2s ease-in-out infinite;
+}
+@keyframes pulse{
+  0%,100%{opacity:1;transform:scale(1)}
+  50%{opacity:.5;transform:scale(.85)}
+}
+.brand-sub{
+  font-size:10px;
+  color:#666;
+  letter-spacing:2px;
+  text-transform:uppercase;
+  font-weight:500;
+  margin-top:2px;
+}
+.topbar-badge{
+  font-size:10px;
+  padding:6px 10px;
+  border:1px solid rgba(255,255,255,0.15);
+  border-radius:999px;
+  color:#aaa;
+  letter-spacing:1px;
+  font-weight:500;
+  background:rgba(255,255,255,0.03);
+  backdrop-filter:blur(10px);
+}
+
+/* ========== PAGES ========== */
+.page{
+  display:none;
+  animation:fadeUp .45s cubic-bezier(.22,.61,.36,1);
+}
+.page.active{display:block}
+@keyframes fadeUp{
+  from{opacity:0;transform:translateY(14px)}
+  to{opacity:1;transform:translateY(0)}
+}
+
+/* ========== HERO ========== */
+.hero{
+  text-align:center;
+  padding:20px 0 30px;
+}
+.hero-title{
+  font-size:44px;
+  font-weight:900;
+  letter-spacing:-2px;
+  line-height:1;
+  background:linear-gradient(180deg,#fff 0%,#888 100%);
+  -webkit-background-clip:text;
+  background-clip:text;
+  -webkit-text-fill-color:transparent;
+  margin-bottom:12px;
+}
+.hero-sub{
+  font-size:11px;
+  letter-spacing:4px;
+  color:#666;
+  text-transform:uppercase;
+  font-weight:600;
+}
+.hero-divider{
+  width:40px;height:2px;background:#fff;
+  margin:22px auto;
+  border-radius:2px;
+  box-shadow:0 0 14px rgba(255,255,255,0.6);
+}
+
+/* ========== CARDS ========== */
+.card{
+  background:rgba(255,255,255,0.035);
+  border:1px solid rgba(255,255,255,0.09);
+  border-radius:20px;
+  padding:20px;
+  margin-bottom:14px;
+  backdrop-filter:blur(20px);
+  -webkit-backdrop-filter:blur(20px);
+  transition:all .3s cubic-bezier(.22,.61,.36,1);
+  position:relative;
+  overflow:hidden;
+}
+.card:hover{
+  border-color:rgba(255,255,255,0.22);
+  background:rgba(255,255,255,0.05);
+  transform:translateY(-2px);
+}
+.card:active{transform:translateY(0) scale(.995)}
+.card-title{
+  font-size:15px;
+  font-weight:700;
+  letter-spacing:-0.2px;
+  margin-bottom:6px;
+  color:#fff;
+}
+.card-desc{
+  font-size:12.5px;
+  color:#999;
+  line-height:1.55;
+  font-weight:400;
+}
+.card-meta{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  margin-top:14px;
+  padding-top:14px;
+  border-top:1px solid rgba(255,255,255,0.06);
+}
+.card-price{
+  font-size:15px;
+  font-weight:800;
+  color:#fff;
+  letter-spacing:-0.3px;
+}
+.card-tag{
+  font-size:9px;
+  color:#666;
+  letter-spacing:1.5px;
+  text-transform:uppercase;
+  font-weight:600;
+}
+
+/* ========== BUTTONS ========== */
+.btn{
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  gap:10px;
+  width:100%;
+  padding:16px 20px;
+  border-radius:16px;
+  font-size:13px;
+  font-weight:700;
+  letter-spacing:0.5px;
+  text-transform:uppercase;
+  transition:all .25s cubic-bezier(.22,.61,.36,1);
+  border:1px solid transparent;
+  user-select:none;
+  -webkit-tap-highlight-color:transparent;
+}
+.btn-primary{
+  background:#fff;
+  color:#000;
+  box-shadow:0 8px 30px rgba(255,255,255,0.15);
+}
+.btn-primary:hover{
+  background:#e8e8e8;
+  transform:translateY(-2px);
+  box-shadow:0 12px 40px rgba(255,255,255,0.22);
+}
+.btn-primary:active{transform:translateY(0) scale(.98)}
+
+.btn-ghost{
+  background:rgba(255,255,255,0.04);
+  color:#fff;
+  border-color:rgba(255,255,255,0.14);
+  backdrop-filter:blur(10px);
+}
+.btn-ghost:hover{
+  background:rgba(255,255,255,0.08);
+  border-color:rgba(255,255,255,0.28);
+  transform:translateY(-2px);
+}
+.btn-ghost:active{transform:translateY(0) scale(.98)}
+
+.btn-sm{
+  padding:11px 16px;
+  font-size:11px;
+  border-radius:12px;
+  letter-spacing:0.4px;
+  width:auto;
+}
+
+.btn-block{margin-bottom:12px}
+
+.btn-icon{
+  width:16px;height:16px;
+  flex-shrink:0;
+}
+
+/* ========== NOTE BOX ========== */
+.note-box{
+  background:rgba(255,255,255,0.03);
+  border-left:2px solid #fff;
+  border-radius:8px;
+  padding:16px 18px;
+  margin:16px 0;
+  font-size:12.5px;
+  color:#ccc;
+  line-height:1.7;
+  letter-spacing:0.1px;
+}
+.note-box strong{color:#fff;font-weight:700}
+
+/* ========== SECTION HEADERS ========== */
+.section-head{
+  display:flex;
+  align-items:center;
+  gap:10px;
+  margin:26px 0 14px;
+}
+.section-head-line{
+  flex:1;
+  height:1px;
+  background:linear-gradient(90deg,transparent,rgba(255,255,255,0.25),transparent);
+}
+.section-head-text{
+  font-size:10px;
+  letter-spacing:3px;
+  color:#888;
+  text-transform:uppercase;
+  font-weight:600;
+  white-space:nowrap;
+}
+.section-title{
+  font-size:20px;
+  font-weight:800;
+  letter-spacing:-0.5px;
+  margin-bottom:4px;
+}
+.section-subtitle{
+  font-size:11px;
+  color:#666;
+  letter-spacing:1.5px;
+  text-transform:uppercase;
+  margin-bottom:18px;
+}
+
+/* ========== SEARCH ========== */
+.search-wrap{
+  position:relative;
+  margin-bottom:16px;
+}
+.search-input{
+  width:100%;
+  padding:14px 16px 14px 42px;
+  background:rgba(255,255,255,0.04);
+  border:1px solid rgba(255,255,255,0.1);
+  border-radius:14px;
+  font-size:13px;
+  color:#fff;
+  outline:none;
+  transition:all .25s;
+}
+.search-input:focus{
+  border-color:rgba(255,255,255,0.35);
+  background:rgba(255,255,255,0.06);
+}
+.search-input::placeholder{color:#555}
+.search-icon{
+  position:absolute;
+  left:15px;top:50%;
+  transform:translateY(-50%);
+  width:16px;height:16px;
+  color:#666;
+  pointer-events:none;
+}
+
+/* ========== FILTER CHIPS ========== */
+.filter-row{
+  display:flex;
+  gap:8px;
+  overflow-x:auto;
+  padding-bottom:8px;
+  margin-bottom:14px;
+  scrollbar-width:none;
+}
+.filter-row::-webkit-scrollbar{display:none}
+.chip{
+  padding:8px 14px;
+  background:rgba(255,255,255,0.04);
+  border:1px solid rgba(255,255,255,0.1);
+  border-radius:999px;
+  font-size:10.5px;
+  color:#aaa;
+  letter-spacing:1px;
+  text-transform:uppercase;
+  font-weight:600;
+  white-space:nowrap;
+  transition:all .25s;
+}
+.chip.active{
+  background:#fff;
+  color:#000;
+  border-color:#fff;
+}
+.chip:hover:not(.active){color:#fff;border-color:rgba(255,255,255,0.3)}
+
+/* ========== PRODUCT CARD ========== */
+.product-card{
+  background:rgba(255,255,255,0.03);
+  border:1px solid rgba(255,255,255,0.08);
+  border-radius:18px;
+  padding:16px;
+  margin-bottom:10px;
+  display:flex;
+  align-items:center;
+  gap:14px;
+  transition:all .25s cubic-bezier(.22,.61,.36,1);
+}
+.product-card:hover{
+  border-color:rgba(255,255,255,0.22);
+  background:rgba(255,255,255,0.05);
+  transform:translateX(3px);
+}
+.product-info{flex:1;min-width:0}
+.product-name{
+  font-size:13.5px;
+  font-weight:700;
+  color:#fff;
+  letter-spacing:-0.2px;
+  margin-bottom:3px;
+  white-space:nowrap;
+  overflow:hidden;
+  text-overflow:ellipsis;
+}
+.product-cat{
+  font-size:9.5px;
+  color:#666;
+  letter-spacing:1.2px;
+  text-transform:uppercase;
+  font-weight:600;
+}
+.product-right{
+  display:flex;
+  flex-direction:column;
+  align-items:flex-end;
+  gap:6px;
+  flex-shrink:0;
+}
+.product-price{
+  font-size:13px;
+  font-weight:800;
+  color:#fff;
+  letter-spacing:-0.2px;
+}
+.btn-buy{
+  padding:7px 14px;
+  background:#fff;
+  color:#000;
+  border-radius:8px;
+  font-size:10px;
+  font-weight:800;
+  letter-spacing:1px;
+  text-transform:uppercase;
+  transition:all .2s;
+}
+.btn-buy:hover{background:#ddd;transform:scale(1.05)}
+.btn-buy:active{transform:scale(.96)}
+
+/* ========== FEEDBACK ========== */
+.feedback-card{
+  background:rgba(255,255,255,0.03);
+  border:1px solid rgba(255,255,255,0.08);
+  border-radius:16px;
+  padding:16px;
+  margin-bottom:12px;
+  transition:all .25s;
+}
+.feedback-card:hover{
+  border-color:rgba(255,255,255,0.2);
+  background:rgba(255,255,255,0.045);
+}
+.feedback-head{
+  display:flex;
+  justify-content:space-between;
+  align-items:flex-start;
+  gap:10px;
+  margin-bottom:8px;
+}
+.feedback-user{
+  font-size:13px;
+  font-weight:700;
+  color:#fff;
+  word-break:break-word;
+}
+.feedback-file{
+  font-size:9.5px;
+  color:#666;
+  letter-spacing:1px;
+  text-transform:uppercase;
+  font-weight:600;
+  margin-top:3px;
+}
+.feedback-stars{
+  font-size:11px;
+  color:#fff;
+  letter-spacing:1px;
+  flex-shrink:0;
+}
+.feedback-msg{
+  font-size:12.5px;
+  color:#bbb;
+  line-height:1.6;
+  word-break:break-word;
+  white-space:pre-wrap;
+}
+.feedback-img{
+  max-width:100%;
+  border-radius:10px;
+  margin-top:10px;
+  border:1px solid rgba(255,255,255,0.1);
+  display:block;
+}
+.feedback-date{
+  font-size:10px;
+  color:#555;
+  margin-top:10px;
+  letter-spacing:0.3px;
+}
+.feedback-positive-badge{
+  display:inline-block;
+  font-size:9px;
+  padding:3px 7px;
+  background:rgba(255,255,255,0.12);
+  border:1px solid rgba(255,255,255,0.25);
+  border-radius:999px;
+  color:#fff;
+  letter-spacing:1px;
+  font-weight:700;
+  margin-left:6px;
+  vertical-align:middle;
+}
+
+/* ========== FORM ========== */
+.form-group{margin-bottom:14px}
+.form-label{
+  display:block;
+  font-size:10px;
+  letter-spacing:1.5px;
+  text-transform:uppercase;
+  color:#888;
+  font-weight:600;
+  margin-bottom:8px;
+}
+.form-input,.form-textarea,.form-select{
+  width:100%;
+  padding:13px 15px;
+  background:rgba(255,255,255,0.04);
+  border:1px solid rgba(255,255,255,0.1);
+  border-radius:12px;
+  color:#fff;
+  font-size:13px;
+  outline:none;
+  transition:all .25s;
+  -webkit-appearance:none;
+  appearance:none;
+}
+.form-input:focus,.form-textarea:focus,.form-select:focus{
+  border-color:rgba(255,255,255,0.35);
+  background:rgba(255,255,255,0.06);
+}
+.form-textarea{
+  resize:vertical;
+  min-height:90px;
+  line-height:1.5;
+}
+.form-select{cursor:pointer}
+.form-select option{background:#111;color:#fff}
+
+.file-input-wrap{
+  position:relative;
+  overflow:hidden;
+  display:inline-block;
+  width:100%;
+}
+.file-input-wrap input[type=file]{
+  position:absolute;
+  inset:0;
+  opacity:0;
+  cursor:pointer;
+  width:100%;
+  height:100%;
+}
+.file-input-btn{
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  gap:8px;
+  padding:13px;
+  background:rgba(255,255,255,0.04);
+  border:1px dashed rgba(255,255,255,0.2);
+  border-radius:12px;
+  color:#aaa;
+  font-size:12px;
+  font-weight:600;
+  transition:all .25s;
+}
+.file-input-wrap:hover .file-input-btn{
+  border-color:rgba(255,255,255,0.5);
+  color:#fff;
+  background:rgba(255,255,255,0.07);
+}
+.img-preview{
+  max-width:100%;
+  max-height:200px;
+  border-radius:10px;
+  margin-top:10px;
+  border:1px solid rgba(255,255,255,0.15);
+  display:none;
+}
+.img-preview.show{display:block}
+
+/* ========== BOTTOM NAV ========== */
+.bottom-nav{
+  position:fixed;
+  bottom:0;left:0;right:0;
+  background:rgba(0,0,0,0.85);
+  backdrop-filter:blur(24px);
+  -webkit-backdrop-filter:blur(24px);
+  border-top:1px solid rgba(255,255,255,0.08);
+  display:flex;
+  justify-content:space-around;
+  align-items:center;
+  padding:10px 6px calc(10px + env(safe-area-inset-bottom));
+  z-index:100;
+}
+.nav-item{
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  gap:4px;
+  padding:6px 10px;
+  flex:1;
+  border-radius:12px;
+  transition:all .25s;
+  color:#666;
+  -webkit-tap-highlight-color:transparent;
+}
+.nav-item.active{color:#fff}
+.nav-item:hover{color:#aaa}
+.nav-item svg{width:20px;height:20px;stroke-width:1.8}
+.nav-label{
+  font-size:9px;
+  letter-spacing:1.2px;
+  text-transform:uppercase;
+  font-weight:700;
+}
+
+/* ========== TOAST ========== */
+.toast{
+  position:fixed;
+  bottom:100px;
+  left:50%;
+  transform:translateX(-50%) translateY(20px);
+  background:rgba(255,255,255,0.95);
+  color:#000;
+  padding:12px 20px;
+  border-radius:12px;
+  font-size:12px;
+  font-weight:600;
+  box-shadow:0 10px 40px rgba(0,0,0,0.5);
+  z-index:200;
+  opacity:0;
+  pointer-events:none;
+  transition:all .35s cubic-bezier(.22,.61,.36,1);
+  max-width:90vw;
+  text-align:center;
+}
+.toast.show{
+  opacity:1;
+  transform:translateX(-50%) translateY(0);
+}
+
+/* ========== LOADER ========== */
+.loader{
+  display:inline-block;
+  width:14px;height:14px;
+  border:2px solid rgba(255,255,255,0.2);
+  border-top-color:#fff;
+  border-radius:50%;
+  animation:spin .8s linear infinite;
+}
+@keyframes spin{to{transform:rotate(360deg)}}
+
+/* ========== BACK BUTTON ========== */
+.back-btn{
+  display:inline-flex;
+  align-items:center;
+  gap:6px;
+  padding:8px 14px;
+  background:rgba(255,255,255,0.04);
+  border:1px solid rgba(255,255,255,0.1);
+  border-radius:999px;
+  font-size:11px;
+  color:#aaa;
+  font-weight:600;
+  letter-spacing:0.5px;
+  margin-bottom:18px;
+  transition:all .25s;
+}
+.back-btn:hover{color:#fff;border-color:rgba(255,255,255,0.3)}
+.back-btn svg{width:14px;height:14px}
+
+/* ========== FOOTER ========== */
+.footer{
+  text-align:center;
+  padding:30px 16px 20px;
+  margin-top:40px;
+  border-top:1px solid rgba(255,255,255,0.06);
+  font-size:11px;
+  color:#555;
+  letter-spacing:1px;
+}
+.footer-brand{color:#999;font-weight:600}
+
+/* ========== EMPTY STATE ========== */
+.empty{
+  text-align:center;
+  padding:40px 20px;
+  color:#555;
+  font-size:12px;
+  letter-spacing:0.5px;
+}
+.empty-icon{
+  font-size:32px;
+  margin-bottom:10px;
+  opacity:0.4;
+}
+
+/* ========== RESPONSIVE ========== */
+@media (max-width:380px){
+  .hero-title{font-size:36px}
+  .app{padding:16px 12px 30px}
+}
+</style>
+</head>
+<body>
+
+<div class="app">
+
+  <!-- ========== TOP BAR ========== -->
+  <div class="topbar">
+    <div>
+      <div class="brand">
+        <div class="brand-dot"></div>
+        ZyeCitedz
+      </div>
+      <div class="brand-sub">Official Information</div>
+    </div>
+    <div class="topbar-badge">V.1.0</div>
+  </div>
+
+  <!-- ========== PAGE: HOME ========== -->
+  <section class="page active" id="page-home">
+    <div class="hero">
+      <h1 class="hero-title">ZyeCitedz</h1>
+      <div class="hero-sub">Official Information Center</div>
+      <div class="hero-divider"></div>
+    </div>
+
+    <button class="btn btn-primary btn-block" data-nav="channel">
+      <svg class="btn-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 2 11 13"/><path d="M22 2l-7 20-4-9-9-4 20-7z"/></svg>
+      Official Channel
+    </button>
+    <p class="card-desc" style="text-align:center;font-size:11.5px;margin:-4px 0 20px;padding:0 8px;line-height:1.6">
+      Join the ZyeCitedz channel and reach 3k followers. Zye will share permanent HYR PROXY for the 10 fastest people.
+    </p>
+
+    <button class="btn btn-ghost btn-block" data-nav="info">
+      ‼️ Information ‼️
+    </button>
+
+    <button class="btn btn-ghost btn-block" data-nav="download">
+      ⬇️ Download Aim Settings OB55
+    </button>
+
+    <div class="section-head">
+      <div class="section-head-line"></div>
+      <div class="section-head-text">Quick Menu</div>
+      <div class="section-head-line"></div>
+    </div>
+
+    <button class="btn btn-ghost btn-block" data-nav="feedback">
+      💬 Feedback ZyeCitedz
+    </button>
+
+    <button class="btn btn-ghost btn-block" data-nav="store">
+      🛒 Store &amp; Catalog
+    </button>
+
+    <div class="footer">
+      <div>© <span class="footer-brand">ZyeCitedz</span> — Official Information</div>
+    </div>
+  </section>
+
+  <!-- ========== PAGE: CHANNEL ========== -->
+  <section class="page" id="page-channel">
+    <button class="back-btn" data-nav="home">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5"/><path d="M12 19l-7-7 7-7"/></svg>
+      Kembali
+    </button>
+
+    <div class="hero" style="padding:10px 0 20px">
+      <h1 class="hero-title" style="font-size:32px">Official Channel</h1>
+      <div class="hero-sub">ZyeCitedz Community</div>
+      <div class="hero-divider"></div>
+    </div>
+
+    <div class="card" style="text-align:center;padding:28px 20px">
+      <div style="font-size:28px;margin-bottom:14px">🔔</div>
+      <div class="card-title" style="font-size:14.5px;line-height:1.5;letter-spacing:0.2px">
+        AKTIFKAN NOTIFIKASI UNTUK TERUS DAPAT INFO PROXY FILE DAN APK MOOD SAFE LAINYA
+      </div>
+    </div>
+
+    <a href="https://whatsapp.com/channel/0029Vb72gOz4dTnLFa0Gen0G" target="_blank" rel="noopener" class="btn btn-primary btn-block">
+      <svg class="btn-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+      Buka Official Channel
+    </a>
+  </section>
+
+  <!-- ========== PAGE: INFORMATION ========== -->
+  <section class="page" id="page-info">
+    <button class="back-btn" data-nav="home">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5"/><path d="M12 19l-7-7 7-7"/></svg>
+      Kembali
+    </button>
+
+    <div class="hero" style="padding:10px 0 20px">
+      <h1 class="hero-title" style="font-size:32px">Information</h1>
+      <div class="hero-sub">Read Carefully</div>
+      <div class="hero-divider"></div>
+    </div>
+
+    <div class="note-box">
+      <strong>NOTE :</strong> CHEAT GAME TIDAK SEPENUHNYA AMAN!<br>
+      KALO NGECHEAT JANGAN TAKUT KE BAND.<br>
+      KALO TAKUT KE BAND JANGAN NGECHEAT
+    </div>
+
+    <button class="btn btn-ghost btn-block" data-nav="home" style="margin-top:16px">
+      Kembali
+    </button>
+  </section>
+
+  <!-- ========== PAGE: DOWNLOAD ========== -->
+  <section class="page" id="page-download">
+    <button class="back-btn" data-nav="home">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5"/><path d="M12 19l-7-7 7-7"/></svg>
+      Kembali
+    </button>
+
+    <div class="hero" style="padding:10px 0 20px">
+      <h1 class="hero-title" style="font-size:32px">AIM SETTINGS<br>OB55</h1>
+      <div class="hero-sub">Free Configuration Files</div>
+      <div class="hero-divider"></div>
+    </div>
+
+    <div id="downloadList"></div>
+
+    <div class="footer">
+      <div>© <span class="footer-brand">ZyeCitedz</span> — Official Information</div>
+    </div>
+  </section>
+
+  <!-- ========== PAGE: FEEDBACK ========== -->
+  <section class="page" id="page-feedback">
+    <button class="back-btn" data-nav="home">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5"/><path d="M12 19l-7-7 7-7"/></svg>
+      Kembali
+    </button>
+
+    <div class="hero" style="padding:10px 0 20px">
+      <h1 class="hero-title" style="font-size:32px">Feedback<br>ZyeCitedz</h1>
+      <div class="hero-sub">Public Feedback System</div>
+      <div class="hero-divider"></div>
+    </div>
+
+    <div class="note-box" style="font-size:11.5px">
+      <strong>INFO:</strong> Feedback disimpan di perangkat Anda (localStorage). Untuk sinkronisasi publik antar pengguna, diperlukan backend/database REST API.
+    </div>
+
+    <div class="card">
+      <div class="card-title">Kirim Feedback</div>
+      <div class="card-desc" style="margin-bottom:16px">Bantu kami meningkatkan kualitas file</div>
+
+      <form id="feedbackForm" novalidate>
+        <div class="form-group">
+          <label class="form-label" for="fbName">Nama / Gmail</label>
+          <input type="text" id="fbName" class="form-input" placeholder="Nama atau email Anda" maxlength="60" required>
+        </div>
+
+        <div class="form-group">
+          <label class="form-label" for="fbFile">Pilih File</label>
+          <select id="fbFile" class="form-select" required>
+            <option value="">— Pilih file —</option>
+            <option value="LOCAL CONFIG AIMLOCK OB55">LOCAL CONFIG AIMLOCK OB55</option>
+            <option value="LOCAL CONFIG LEHER HS + BACK JUMP">LOCAL CONFIG LEHER HS + BACK JUMP</option>
+            <option value="LOCAL CONFIG LOGO PC FULL SAFE">LOCAL CONFIG LOGO PC FULL SAFE</option>
+            <option value="AIM BRUTAL VVIP 115K">AIM BRUTAL VVIP 115K</option>
+            <option value="General Feedback">General Feedback</option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label class="form-label" for="fbMessage">Pesan Feedback</label>
+          <textarea id="fbMessage" class="form-textarea" placeholder="Tulis pengalaman Anda..." maxlength="500" required></textarea>
+        </div>
+
+        <div class="form-group">
+          <label class="form-label">Upload Foto / Screenshot (Opsional)</label>
+          <div class="file-input-wrap">
+            <div class="file-input-btn">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>
+              Pilih Foto
+            </div>
+            <input type="file" id="fbImage" accept="image/*">
+          </div>
+          <img id="fbPreview" class="img-preview" alt="Preview">
+        </div>
+
+        <button type="submit" class="btn btn-primary btn-block" style="margin-top:6px">
+          Kirim Feedback
+        </button>
+      </form>
+    </div>
+
+    <div class="section-head">
+      <div class="section-head-line"></div>
+      <div class="section-head-text">Top Positive Feedback</div>
+      <div class="section-head-line"></div>
+    </div>
+    <div id="positiveFeedbackList"></div>
+
+    <div class="section-head">
+      <div class="section-head-line"></div>
+      <div class="section-head-text">Other Feedback</div>
+      <div class="section-head-line"></div>
+    </div>
+    <div id="otherFeedbackList"></div>
+
+    <div class="footer">
+      <div>© <span class="footer-brand">ZyeCitedz</span> — Official Information</div>
+    </div>
+  </section>
+
+  <!-- ========== PAGE: STORE ========== -->
+  <section class="page" id="page-store">
+    <button class="back-btn" data-nav="home">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5"/><path d="M12 19l-7-7 7-7"/></svg>
+      Kembali
+    </button>
+
+    <div class="hero" style="padding:10px 0 20px">
+      <h1 class="hero-title" style="font-size:30px">LIST FILE &amp;<br>PROXY VVIP</h1>
+      <div class="hero-sub">By Zye</div>
+      <div class="hero-divider"></div>
+    </div>
+
+    <div class="search-wrap">
+      <svg class="search-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+      <input type="text" id="storeSearch" class="search-input" placeholder="Cari file / produk...">
+    </div>
+
+    <div class="filter-row" id="filterRow"></div>
+
+    <div id="storeList"></div>
+
+    <div class="note-box" style="margin-top:26px">
+      <strong>INFORMATION</strong><br>
+      SEMUA FILE/PROXY DITULIS SEBAGAI INFORMASI UNTUK VERSI OB55. KEAMANAN DAN RISIKO BAN TIDAK DAPAT DIJAMIN 100%.
+      <br><br>
+      <strong>NOTE :</strong> ADMIN AKAN TANGGUNG JAWAB TERHADAP AKUN YANG KE BAND JIKA ANDA MEMBELI FILE/PROXY DARI ADMIN.
+    </div>
+
+    <div class="footer">
+      <div>© <span class="footer-brand">ZyeCitedz</span> — Official Information</div>
+    </div>
+  </section>
+
+</div>
+
+<!-- ========== BOTTOM NAV ========== -->
+<nav class="bottom-nav">
+  <button class="nav-item active" data-nav="home">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+    <span class="nav-label">Home</span>
+  </button>
+  <button class="nav-item" data-nav="download">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+    <span class="nav-label">Download</span>
+  </button>
+  <button class="nav-item" data-nav="feedback">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+    <span class="nav-label">Feedback</span>
+  </button>
+  <button class="nav-item" data-nav="store">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>
+    <span class="nav-label">Store</span>
+  </button>
+</nav>
+
+<!-- ========== TOAST ========== -->
+<div class="toast" id="toast"></div>
+
+<script>
+/* ============================================================
+   ZyeCitedz SPA
+   Pure vanilla JS — no frameworks
+   ============================================================ */
+
+(function(){
+'use strict';
+
+/* ---------- CONSTANTS ---------- */
+const WHATSAPP_NUMBER = '628817789861';
+const FB_STORAGE_KEY = 'zyecitedz_feedback_v1';
+
+/* ---------- DOWNLOAD FILES DATA ---------- */
+const downloadFiles = [
+  {
+    title: 'LOCAL CONFIG AIMLOCK OB55',
+    desc: 'Configuration file untuk pengaturan AIMLOCK OB55.',
+    url: 'https://sfl.gl/UIIq3Y'
+  },
+  {
+    title: 'LOCAL CONFIG LEHER HS + BACK JUMP',
+    desc: 'Configuration file dengan pengaturan leher HS dan Back Jump.',
+    url: 'https://sfl.gl/EMHRM'
+  },
+  {
+    title: 'LOCAL CONFIG LOGO PC FULL SAFE',
+    desc: 'Configuration file dengan tampilan Logo PC.',
+    url: 'https://sfl.gl/HFNZz'
+  },
+  {
+    title: 'AIM BRUTAL VVIP 115K',
+    desc: 'File ini sangat brutal, bisa kil manual tanpa tembak. Gunakan akun bot.',
+    url: 'https://sfl.gl/BT8iNqu'
+  }
+];
+
+/* ---------- PRODUCTS DATA ---------- */
+const products = [
+  // HEADLOCK
+  { name: 'HEADLOCK 70%', category: 'headlock', price: 'RP 15K' },
+  { name: 'HEADLOCK 80%', category: 'headlock', price: 'RP 20K' },
+  { name: 'HEADLOCK 90%', category: 'headlock', price: 'RP 25K' },
+  { name: 'HEADLOCK 99%', category: 'headlock', price: 'RP 30K' },
+
+  // AIMLOCK
+  { name: 'AIMLOCK 98%', category: 'aimlock', price: 'RP 20K' },
+  { name: 'AIMLOCK 98% VIP', category: 'aimlock', price: 'RP 30K' },
+
+  // AIMBOT
+  { name: 'AIMBOT 97%', category: 'aimbot', price: 'RP 25K' },
+  { name: 'AIMBOT 97% VIP', category: 'aimbot', price: 'RP 35K' },
+
+  // DRAG HS
+  { name: 'DRAG HS 70%', category: 'drag_hs', price: 'RP 10K' },
+  { name: 'DRAG HS 80%', category: 'drag_hs', price: 'RP 15K' },
+  { name: 'DRAG HS 90%', category: 'drag_hs', price: 'RP 20K' },
+  { name: 'DRAG HS 100%', category: 'drag_hs', price: 'RP 25K' },
+
+  // BODYLOCK
+  { name: 'BODYLOCK 50%', category: 'bodylock', price: 'RP 30K' },
+  { name: 'BODYLOCK 80%', category: 'bodylock', price: 'RP 40K' },
+  { name: 'BODYLOCK 100%', category: 'bodylock', price: 'RP 50K' },
+
+  // YTTA
+  { name: 'GRAFIK MINICRAFT', category: 'ytta', price: 'RP 15K' },
+  { name: 'BODY HS NON ROOT', category: 'ytta', price: 'RP 50K' },
+  { name: 'MAGIC BULLET', category: 'ytta', price: 'RP 20K' },
+
+  // HEADTRICK HYR
+  { name: 'HEADTRICK HYR BASIC', category: 'headtrick', price: 'RP 10K' },
+  { name: 'HEADTRICK HYR INTERMEDIATE', category: 'headtrick', price: 'RP 20K' },
+  { name: 'HEADTRICK HYR SUPER PREMIUM', category: 'headtrick', price: 'RP 30K' },
+
+  // HYPER SONIC
+  { name: 'HYPER SONIC V1', category: 'hyper_sonic', price: 'RP 5K' },
+  { name: 'HYPER SONIC V2', category: 'hyper_sonic', price: 'RP 10K' },
+  { name: 'HYPER SONIC V3', category: 'hyper_sonic', price: 'RP 15K' },
+  { name: 'HYPER SONIC V4', category: 'hyper_sonic', price: 'RP 20K' },
+  { name: 'HYPER SONIC V5', category: 'hyper_sonic', price: 'RP 25K' },
+
+  // HYR PROXY INJECTOR
+  { name: 'HYR PROXY INJECTOR - AKSES VIP', category: 'hyr_proxy', price: 'RP 25K',
+    desc: 'Fitur: AIMLOCK, BODY HS, BODYLOCK, AIM NECK, ESP BOX, ESP NAME' },
+  { name: 'HYR PROXY INJECTOR - AKSES VVIP', category: 'hyr_proxy', price: 'RP 50K',
+    desc: 'Fitur: GRAFIK MINICRAFT, HEADLOCK, AIMLOCK, AIMBOT, DRAG HS, MAGIC BULLET, BODY HS, UNLOCK 144FPS, BACK JUMP, ESP BOX, ESP NAME' },
+
+  // DRIP CLIENT APK MOD
+  { name: 'DRIP CLIENT 1DAY', category: 'drip_apk', price: 'RP 15K' },
+  { name: 'DRIP CLIENT 3DAY', category: 'drip_apk', price: 'RP 25K' },
+  { name: 'DRIP CLIENT 7DAY', category: 'drip_apk', price: 'RP 50K' },
+  { name: 'DRIP CLIENT 15DAY', category: 'drip_apk', price: 'RP 60K' },
+  { name: 'DRIP CLIENT 30DAY', category: 'drip_apk', price: 'RP 115K' },
+
+  // DRIP CLIENT PROXY
+  { name: 'DRIP PROXY 1DAY', category: 'drip_proxy', price: 'RP 15K' },
+  { name: 'DRIP PROXY 3DAY', category: 'drip_proxy', price: 'RP 25K' },
+  { name: 'DRIP PROXY 7DAY', category: 'drip_proxy', price: 'RP 50K' },
+
+  // HG CHEAT
+  { name: 'HG CHEAT 1DAY', category: 'hg_cheat', price: 'RP 20K' },
+  { name: 'HG CHEAT 7DAY', category: 'hg_cheat', price: 'RP 40K' },
+  { name: 'HG CHEAT 10DAY', category: 'hg_cheat', price: 'RP 50K' },
+  { name: 'HG CHEAT 30DAY', category: 'hg_cheat', price: 'RP 120K' }
+];
+
+/* ---------- CATEGORY LABELS ---------- */
+const categoryLabels = {
+  all: 'All',
+  headlock: '📁 Headlock',
+  aimlock: '🎯 Aimlock',
+  aimbot: '🎯 Aimbot',
+  drag_hs: '🔥 Drag HS',
+  bodylock: '🛡️ Bodylock',
+  ytta: '📱 YTTA',
+  headtrick: '⚙️ Headtrick HYR',
+  hyper_sonic: '⚡ Hyper Sonic',
+  hyr_proxy: '🚀 HYR Proxy',
+  drip_apk: '🟣 Drip APK',
+  drip_proxy: '🟢 Drip Proxy',
+  hg_cheat: '🔵 HG Cheat'
+};
+
+/* ---------- INITIAL FEEDBACK (Indonesian names, no negative) ---------- */
+const DEMO_FEEDBACK = [
+  { name: 'Budi Santoso', file: 'LOCAL CONFIG AIMLOCK OB55', message: 'Gacor banget, work parah!', image: null, date: '2026-01-12' },
+  { name: 'Siti Aminah', file: 'LOCAL CONFIG LEHER HS + BACK JUMP', message: 'Mantap GG, aim jadi nempel', image: null, date: '2026-01-14' },
+  { name: 'Andi Wijaya', file: 'AIM BRUTAL VVIP 115K', message: 'Berfungsi dengan baik, sesuai deskripsi', image: null, date: '2026-01-15' },
+  { name: 'Rina Kartika', file: 'LOCAL CONFIG LOGO PC FULL SAFE', message: 'Mantap banget, tampilan logo PC keren', image: null, date: '2026-01-16' }
+];
+
+/* ---------- NEGATIVE KEYWORDS ---------- */
+const NEGATIVE_KEYWORDS = [
+  'gimick', 'gimmick', 'ga gacor', 'gak gacor', 'tidak gacor',
+  'ke band', 'keband', 'kena band', 'jangan download', 'jangan beli',
+  'free', 'gratis', 'jual', 'jualan', 'scam', 'penipuan', 'tipu',
+  'zonk', 'tidak work', 'gak work', 'ga work', 'gagal', 'error',
+  'jelek', 'buruk', 'parah', 'tidak berfungsi', 'ga berfungsi'
+];
+
+/* ============================================================
+   UTILITIES
+   ============================================================ */
+
+function escapeHTML(str) {
+  if (str === null || str === undefined) return '';
+  return String(str)
+    .replace(/&/g, '&amp;')
+    .replace(/</g, '&lt;')
+    .replace(/>/g, '&gt;')
+    .replace(/"/g, '&quot;')
+    .replace(/'/g, '&#39;');
+}
+
+function isNegativeFeedback(text) {
+  if (!text) return false;
+  const lower = text.toLowerCase();
+  for (const kw of NEGATIVE_KEYWORDS) {
+    if (lower.includes(kw)) return true;
+  }
+  return false;
+}
+
+function getStarsForMessage(text) {
+  if (isNegativeFeedback(text)) return 1;
+  const lower = (text || '').toLowerCase();
+  if (lower.includes('mantap') || lower.includes('gacor') || lower.includes('work parah')) return 5;
+  return 4;
+}
+
+function formatDate(dateStr) {
+  try {
+    const d = new Date(dateStr);
+    if (isNaN(d.getTime())) return dateStr;
+    return d.toLocaleDateString('id-ID', { day: '2-digit', month: 'short', year: 'numeric' });
+  } catch (e) {
+    return dateStr;
+  }
+}
+
+function starsToText(n) {
+  return '★'.repeat(n) + '☆'.repeat(5 - n);
+}
+
+/* ---------- TOAST ---------- */
+let toastTimeout;
+function showToast(msg, duration) {
+  const toast = document.getElementById('toast');
+  if (!toast) return;
+  toast.textContent = msg;
+  toast.classList.add('show');
+  clearTimeout(toastTimeout);
+  toastTimeout = setTimeout(() => {
+    toast.classList.remove('show');
+  }, duration || 2200);
+}
+
+/* ---------- WHATSAPP BUY ---------- */
+function buyProduct(name) {
+  const message = `Halo Admin ZyeCitedz, saya ingin membeli ${name}.`;
+  const url = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(message)}`;
+  window.open(url, '_blank');
+  showToast('Membuka WhatsApp...');
+}
+
+/* ============================================================
+   NAVIGATION (SPA)
+   ============================================================ */
+
+function navigate(pageId) {
+  const pages = document.querySelectorAll('.page');
+  pages.forEach(p => p.classList.remove('active'));
+
+  const target = document.getElementById('page-' + pageId);
+  if (target) {
+    target.classList.add('active');
+  } else {
+    document.getElementById('page-home').classList.add('active');
+    pageId = 'home';
+  }
+
+  // Update bottom nav
+  document.querySelectorAll('.nav-item').forEach(n => {
+    n.classList.toggle('active', n.getAttribute('data-nav') === pageId);
+  });
+
+  // Scroll top
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+
+  // Lazy init per page
+  if (pageId === 'feedback') renderFeedback();
+  if (pageId === 'store') renderStore();
+  if (pageId === 'download') renderDownloads();
+
+  // Update hash
+  if (history.replaceState) {
+    history.replaceState(null, '', '#' + pageId);
+  }
+}
+
+function initNavigation() {
+  document.addEventListener('click', (e) => {
+    const trigger = e.target.closest('[data-nav]');
+    if (!trigger) return;
+    e.preventDefault();
+    const pageId = trigger.getAttribute('data-nav');
+    navigate(pageId);
+  });
+
+  // Restore from hash
+  const hash = window.location.hash.replace('#', '');
+  if (hash && document.getElementById('page-' + hash)) {
+    navigate(hash);
+  }
+
+  // Back button
+  window.addEventListener('popstate', () => {
+    const hash = window.location.hash.replace('#', '');
+    if (hash && document.getElementById('page-' + hash)) {
+      navigate(hash);
+    } else {
+      navigate('home');
+    }
+  });
+}
+
+/* ============================================================
+   RENDER: DOWNLOAD PAGE
+   ============================================================ */
+
+function renderDownloads() {
+  const list = document.getElementById('downloadList');
+  if (!list) return;
+  list.innerHTML = '';
+
+  downloadFiles.forEach((file, idx) => {
+    const card = document.createElement('div');
+    card.className = 'card';
+
+    const feedbackHtml = buildFeedbackForFile(file.title);
+
+    card.innerHTML = `
+      <div class="card-title">${escapeHTML(file.title)}</div>
+      <div class="card-desc">${escapeHTML(file.desc)}</div>
+      <div class="card-meta">
+        <a href="${escapeHTML(file.url)}" target="_blank" rel="noopener" class="btn btn-primary btn-sm" style="width:auto">
+          <svg class="btn-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" style="width:14px;height:14px">
+            <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
+            <polyline points="7 10 12 15 17 10"/>
+            <line x1="12" y1="15" x2="12" y2="3"/>
+          </svg>
+          Download
+        </a>
+      </div>
+      ${feedbackHtml}
+    `;
+    list.appendChild(card);
+  });
+}
+
+function buildFeedbackForFile(fileName) {
+  const all = getAllFeedback();
+  const relevant = all.filter(f => f.file === fileName);
+  if (relevant.length === 0) return '';
+
+  const positive = relevant.filter(f => !isNegativeFeedback(f.message)).slice(0, 2);
+  if (positive.length === 0) return '';
+
+  let html = '<div style="margin-top:16px;padding-top:16px;border-top:1px solid rgba(255,255,255,0.06)">';
+  html += '<div style="font-size:9.5px;letter-spacing:2px;color:#666;text-transform:uppercase;font-weight:700;margin-bottom:10px">Public Feedback</div>';
+
+  positive.forEach(f => {
+    html += `
+      <div style="margin-bottom:10px">
+        <div style="display:flex;justify-content:space-between;align-items:baseline;gap:8px;margin-bottom:4px">
+          <span style="font-size:12px;font-weight:700;color:#fff">${escapeHTML(f.name)}</span>
+          <span style="font-size:10px;color:#fff">${starsToText(getStarsForMessage(f.message))}</span>
+        </div>
+        <div style="font-size:12px;color:#aaa;line-height:1.5">${escapeHTML(f.message)}</div>
+      </div>
+    `;
+  });
+
+  html += '</div>';
+  return html;
+}
+
+/* ============================================================
+   RENDER: STORE PAGE
+   ============================================================ */
+
+let currentCategory = 'all';
+let currentSearch = '';
+
+function renderFilterChips() {
+  const row = document.getElementById('filterRow');
+  if (!row) return;
+  row.innerHTML = '';
+
+  Object.keys(categoryLabels).forEach(cat => {
+    const chip = document.createElement('button');
+    chip.className = 'chip' + (cat === currentCategory ? ' active' : '');
+    chip.textContent = categoryLabels[cat];
+    chip.setAttribute('data-cat', cat);
+    chip.addEventListener('click', () => {
+      currentCategory = cat;
+      document.querySelectorAll('.chip').forEach(c => c.classList.remove('active'));
+      chip.classList.add('active');
+      renderStoreList();
+    });
+    row.appendChild(chip);
+  });
+}
+
+function renderStoreList() {
+  const list = document.getElementById('storeList');
+  if (!list) return;
+
+  const filtered = products.filter(p => {
+    const matchCat = currentCategory === 'all' || p.category === currentCategory;
+    const q = currentSearch.toLowerCase().trim();
+    const matchSearch = !q || p.name.toLowerCase().includes(q);
+    return matchCat && matchSearch;
+  });
+
+  if (filtered.length === 0) {
+    list.innerHTML = `
+      <div class="empty">
+        <div class="empty-icon">🔎</div>
+        <div>Tidak ada produk ditemukan</div>
+      </div>
+    `;
+    return;
+  }
+
+  list.innerHTML = '';
+  filtered.forEach(p => {
+    const card = document.createElement('div');
+    card.className = 'product-card';
+    card.innerHTML = `
+      <div class="product-info">
+        <div class="product-name">${escapeHTML(p.name)}</div>
+        <div class="product-cat">${escapeHTML(categoryLabels[p.category] || p.category)}</div>
+        ${p.desc ? `<div style="font-size:11px;color:#777;margin-top:5px;line-height:1.4">${escapeHTML(p.desc)}</div>` : ''}
+      </div>
+      <div class="product-right">
+        <div class="product-price">${escapeHTML(p.price)}</div>
+        <button class="btn-buy" data-buy="${escapeHTML(p.name)}">Buy</button>
+      </div>
+    `;
+    list.appendChild(card);
+  });
+
+  // Attach buy listeners
+  list.querySelectorAll('[data-buy]').forEach(btn => {
+    btn.addEventListener('click', (e) => {
+      e.stopPropagation();
+      const name = btn.getAttribute('data-buy');
+      buyProduct(name);
+    });
+  });
+}
+
+function renderStore() {
+  renderFilterChips();
+  renderStoreList();
+}
+
+function initStoreSearch() {
+  const input = document.getElementById('storeSearch');
+  if (!input) return;
+  input.addEventListener('input', (e) => {
+    currentSearch = e.target.value;
+    renderStoreList();
+  });
+}
+
+/* ============================================================
+   FEEDBACK SYSTEM
+   ============================================================ */
+
+function getAllFeedback() {
+  let stored = [];
+  try {
+    const raw = localStorage.getItem(FB_STORAGE_KEY);
+    if (raw) stored = JSON.parse(raw);
+    if (!Array.isArray(stored)) stored = [];
+  } catch (e) { stored = []; }
+
+  // Combine with initial feedback
+  return [...stored, ...DEMO_FEEDBACK];
+}
+
+function saveFeedback(feedback) {
+  try {
+    const raw = localStorage.getItem(FB_STORAGE_KEY);
+    let stored = raw ? JSON.parse(raw) : [];
+    if (!Array.isArray(stored)) stored = [];
+    stored.push(feedback);
+    localStorage.setItem(FB_STORAGE_KEY, JSON.stringify(stored));
+    return true;
+  } catch (e) {
+    console.error('Save error:', e);
+    return false;
+  }
+}
+
+function renderFeedback() {
+  const all = getAllFeedback();
+
+  const positive = all.filter(f => !isNegativeFeedback(f.message));
+  const other = all.filter(f => isNegativeFeedback(f.message));
+
+  // Render top positive
+  const posList = document.getElementById('positiveFeedbackList');
+  if (posList) {
+    if (positive.length === 0) {
+      posList.innerHTML = `<div class="empty">Belum ada feedback positif</div>`;
+    } else {
+      posList.innerHTML = '';
+      positive.slice().reverse().forEach(f => {
+        posList.appendChild(buildFeedbackCard(f, true));
+      });
+    }
+  }
+
+  // Render other
+  const otherList = document.getElementById('otherFeedbackList');
+  if (otherList) {
+    if (other.length === 0) {
+      otherList.innerHTML = `<div class="empty">Belum ada feedback lain</div>`;
+    } else {
+      otherList.innerHTML = '';
+      other.slice().reverse().forEach(f => {
+        otherList.appendChild(buildFeedbackCard(f, false));
+      });
+    }
+  }
+}
+
+function buildFeedbackCard(f, isPositive) {
+  const card = document.createElement('div');
+  card.className = 'feedback-card';
+
+  const stars = getStarsForMessage(f.message);
+  const posBadge = isPositive ? '<span class="feedback-positive-badge">TOP</span>' : '';
+
+  let imgHtml = '';
+  if (f.image) {
+    imgHtml = `<img src="${escapeHTML(f.image)}" class="feedback-img" alt="Feedback image" onerror="this.style.display='none'">`;
+  }
+
+  card.innerHTML = `
+    <div class="feedback-head">
+      <div style="min-width:0;flex:1">
+        <div class="feedback-user">${escapeHTML(f.name)}${posBadge}</div>
+        <div class="feedback-file">${escapeHTML(f.file)}</div>
+      </div>
+      <div class="feedback-stars">${starsToText(stars)}</div>
+    </div>
+    <div class="feedback-msg">${escapeHTML(f.message)}</div>
+    ${imgHtml}
+    <div class="feedback-date">${escapeHTML(formatDate(f.date))}</div>
+  `;
+  return card;
+}
+
+function initFeedbackForm() {
+  const form = document.getElementById('feedbackForm');
+  const nameInput = document.getElementById('fbName');
+  const fileSelect = document.getElementById('fbFile');
+  const msgInput = document.getElementById('fbMessage');
+  const imgInput = document.getElementById('fbImage');
+  const imgPreview = document.getElementById('fbPreview');
+
+  if (!form) return;
+
+  // Image preview
+  let imageDataUrl = null;
+  imgInput.addEventListener('change', (e) => {
+    const file = e.target.files && e.target.files[0];
+    if (!file) {
+      imageDataUrl = null;
+      imgPreview.classList.remove('show');
+      return;
+    }
+    if (file.size > 2 * 1024 * 1024) {
+      showToast('Ukuran gambar maksimal 2MB');
+      imgInput.value = '';
+      imageDataUrl = null;
+      imgPreview.classList.remove('show');
+      return;
+    }
+    const reader = new FileReader();
+    reader.onload = (ev) => {
+      imageDataUrl = ev.target.result;
+      imgPreview.src = imageDataUrl;
+      imgPreview.classList.add('show');
+    };
+    reader.readAsDataURL(file);
+  });
+
+  // Submit
+  form.addEventListener('submit', (e) => {
+    e.preventDefault();
+
+    const name = nameInput.value.trim();
+    const file = fileSelect.value;
+    const message = msgInput.value.trim();
+
+    // Validation
+    if (!name || name.length < 2) {
+      showToast('Nama minimal 2 karakter');
+      nameInput.focus();
+      return;
+    }
+    if (!file) {
+      showToast('Pilih file terlebih dahulu');
+      fileSelect.focus();
+      return;
+    }
+    if (!message || message.length < 3) {
+      showToast('Pesan minimal 3 karakter');
+      msgInput.focus();
+      return;
+    }
+
+    const feedback = {
+      name: name,
+      file: file,
+      message: message,
+      image: imageDataUrl,
+      date: new Date().toISOString()
+    };
+
+    if (saveFeedback(feedback)) {
+      showToast('Feedback berhasil dikirim!');
+      form.reset();
+      imageDataUrl = null;
+      imgPreview.classList.remove('show');
+      renderFeedback();
+    } else {
+      showToast('Gagal menyimpan feedback');
+    }
+  });
+}
+
+/* ============================================================
+   INIT
+   ============================================================ */
+
+function init() {
+  initNavigation();
+  initStoreSearch();
+  initFeedbackForm();
+
+  // Pre-render download & store so it's ready
+  renderDownloads();
+  renderStore();
+  renderFeedback();
+
+  // Handle initial hash
+  const hash = window.location.hash.replace('#', '');
+  if (hash) navigate(hash);
+}
+
+if (document.readyState === 'loading') {
+  document.addEventListener('DOMContentLoaded', init);
+} else {
+  init();
+}
+
+})();
+</script>
+</body>
+</html>
